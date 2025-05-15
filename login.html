@@ -1,0 +1,127 @@
+```
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login - Loja Virtual de Basquete</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  #loginForm {
+    background: #292929;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #ff6200aa;
+    width: 320px;
+  }
+  #loginForm h3 {
+    text-align: center;
+    color: #ff6200;
+    margin-bottom: 1.5rem;
+    font-family: 'Impact', sans-serif;
+  }
+  #loginForm label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #ff8c42;
+    font-weight: 600;
+  }
+  #loginForm input {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 1.2rem;
+    background: #121212;
+    color: #fff;
+    border: 1.5px solid #444;
+    font-size: 1rem;
+  }
+  #loginForm input:focus {
+    border-color: #ff6200;
+    box-shadow: 0 0 8px #ff6200cc;
+    outline: none;
+  }
+  #loginForm button {
+    background: #ff6200;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 30px;
+    color: #121212;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+  }
+  #loginForm button:hover {
+    background: #e65c00;
+  }
+  #errorMessage {
+    color: #ff4c4c;
+    text-align: center;
+    margin-bottom: 1rem;
+    display: none;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div id="loginForm" role="main" aria-label="Formulário de Login">
+  <h3>Login</h3>
+  <div id="errorMessage" role="alert"></div>
+  <form id="form" novalidate>
+    <label for="username">Usuário</label>
+    <input type="text" id="username" name="username" autocomplete="username" placeholder="Digite seu usuário" required />
+    
+    <label for="password">Senha</label>
+    <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Digite sua senha" required />
+    
+    <button type="submit">Entrar</button>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('form');
+  const errorMessage = document.getElementById('errorMessage');
+
+  // Para exemplo simples, usaremos um usuário fixo.
+  const validUser = {
+    username: 'usuario',
+    password: '123456'
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorMessage.style.display = 'none';
+
+    const username = form.username.value.trim();
+    const password = form.password.value;
+
+    if(username === validUser.username && password === validUser.password){
+      // Salvar que está logado (pode ser usado para controle simples)
+      sessionStorage.setItem('isLoggedIn', 'true');
+      sessionStorage.setItem('username', username);
+
+      // Redireciona para a página da loja
+      window.location.href = 'loja.html';
+    } else {
+      errorMessage.textContent = 'Usuário ou senha incorretos.';
+      errorMessage.style.display = 'block';
+    }
+  });
+</script>
+
+</body>
+</html>
+```
